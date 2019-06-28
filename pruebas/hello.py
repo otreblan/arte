@@ -2,7 +2,9 @@ import bpy
 import random
 import numpy
 
-for ii in range(1000):
+objects = 0
+
+while (objects < 1000):
     # Size
     size = random.uniform(0.5,2)
     # Location
@@ -27,7 +29,8 @@ for ii in range(1000):
 
     # Get data from spawned object
     cube = bpy.context.active_object
-    #lastLoc = cube.location
+
+
 
     # Bisecting
     for jj in range(4):
@@ -63,4 +66,16 @@ for ii in range(1000):
     )
 
     bpy.ops.object.editmode_toggle()
+
+    print(cube.name)
+    if cube.type == 'MESH':
+        isEmpty = True
+        for vertex in cube.data.vertices:
+            isEmpty = False
+            print(vertex.co)
+        if isEmpty:
+            bpy.ops.object.delete(use_global=False, confirm=False)
+        else:
+            objects += 1
+
     bpy.ops.object.select_all(action='DESELECT')
