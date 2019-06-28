@@ -2,7 +2,7 @@ import bpy
 import random
 import numpy
 
-for ii in range(300):
+for ii in range(1000):
     # Size
     size = random.uniform(0.5,2)
     # Location
